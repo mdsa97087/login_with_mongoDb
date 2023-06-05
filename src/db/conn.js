@@ -6,7 +6,7 @@ mongoose.connect("mongodb://localhost:27017/youtubeRegistration", {
       useUnifiedTopology:true,
       useCreateIndex:true
 }).then(() => {
-      console.log(`connectio ok`)
+      console.log(`connection ok`)
 }).catch((e) => {
       console.log("not ok ")
 })

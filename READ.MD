@@ -12,6 +12,8 @@
 7.    ### script page 
  ` "test": "nodemon src/app.js" `
 
-8.    
+8.    ## in test  modify
+
+ ` "test": "nodemon src/app.js -e js,hbs" `
 
 
