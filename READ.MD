@@ -17,3 +17,8 @@
  ` "test": "nodemon src/app.js -e js,hbs" `
 
 
+9.    ## for secure password 
+` npm i bcrypt `
+
+
+
