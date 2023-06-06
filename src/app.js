@@ -4,6 +4,8 @@ const path = require("path");
 require("./db/conn");
 const port = process.env.PORT || 3000;
 const hbs = require("hbs");
+const bcrypt=require("bcrypt")
+
 
 const Register = require("./models/register");
 
@@ -77,7 +79,12 @@ app.post("/login", async (req, res) => {
 
     const useremail = await Register.findOne({ email: email });
 
-    if (useremail.password === password) {
+    //  fOR MATCH PASSWORD
+  const passwordmatch=await bcrypt.compare(password,useremail.password);
+
+
+    // if (useremail.password === password){
+    if (passwordmatch){
       res.status(201).render("index");
     } else {
       // alert("hello")
@@ -87,18 +94,26 @@ app.post("/login", async (req, res) => {
     // res.send(useremail);
     // console.log(useremail);
 
-    
-//  For secure password 
-const bcrypt=require("bcryptjs")
-
-
-
-
-
   } catch (error) {
     res.status(400).send("invalid Email");
   }
 });
+
+
+//  For secure password 
+// const bcrypt=require("bcrypt")
+
+// const securePassword= async (password) => {
+//   const passwordHash= await bcrypt.hash(password,10);
+//   console.log(passwordHash)
+
+//   const passwordmatch= await bcrypt.compare(password,passwordHash);
+//   console.log(passwordmatch)
+// }
+
+// securePassword("aa9g9")
+
+
 
 app.listen(port, () => {
   console.log(`server is runnig at port no ${port}`);
